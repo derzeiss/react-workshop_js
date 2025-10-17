@@ -1,4 +1,5 @@
 import "./style.css";
+import personListModule from "./personList";
 
 const PERSONS = [
   { name: "John Doe", bio: "Tech-Writer from LA, loves React" },
@@ -20,17 +21,4 @@ const render = (component, selector = "#app") => {
   document.querySelector(selector).innerHTML = component();
 };
 
-const person = ({ name, bio, posts }) => {
-  return `<h2>${name}</h2>
-  <p>${bio}</p>
-  <ul>
-    ${posts.map((post) => `<li>${post.title}</li>`).join("\n")}
-  </ul>
-  `;
-};
-
-const personList = (persons) => {
-  return persons.map((p) => person(p)).join("\n");
-};
-
-render(() => personList(PERSONS_WITH_POSTS));
+render(() => personListModule(PERSONS_WITH_POSTS));

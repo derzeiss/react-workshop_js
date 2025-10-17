@@ -7,7 +7,9 @@ const render = (component, selector = "#app") => {
 };
 
 const person = (person) => {
-  return "<h2>" + person.name + "</h2>";
+  return `<h2>${person.name}</h2>
+  <p>${person.bio}</p>
+  `;
 };
 
 render(() => person(JOHN));

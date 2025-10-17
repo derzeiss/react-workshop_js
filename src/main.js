@@ -22,3 +22,32 @@ const render = (component, selector = "#app") => {
 };
 
 render(() => personListModule(PERSONS_WITH_POSTS));
+
+const getPersonByName = (name) => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      const person = PERSONS.find((p) => p.name === name);
+      if (person) return res(person);
+      rej("Person not found: " + name);
+    }, 1000);
+  });
+};
+
+const getPostsFor = (person) => {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      const posts = POSTS.filter((p) => p.author === person.name);
+      if (posts.length) return res(posts);
+      rej("No posts found for " + person.name);
+    }, 1000);
+  });
+};
+
+const getPostTitlesByName = (name) => {
+  return getPersonByName(name)
+    .then((person) => getPostsFor(person))
+    .then((posts) => posts.map((p) => p.title))
+    .catch(console.error);
+};
+
+getPostTitlesByName("John Doe").then(console.log);

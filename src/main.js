@@ -9,9 +9,9 @@ const render = (component, selector = "#app") => {
   document.querySelector(selector).innerHTML = component();
 };
 
-const person = (person) => {
-  return `<h2>${person.name}</h2>
-  <p>${person.bio}</p>
+const person = ({ name, bio }) => {
+  return `<h2>${name}</h2>
+  <p>${bio}</p>
   `;
 };
 
